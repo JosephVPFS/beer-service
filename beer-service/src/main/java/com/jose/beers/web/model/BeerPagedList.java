@@ -17,6 +17,11 @@ import org.springframework.data.domain.Pageable;
 public class BeerPagedList extends PageImpl<BeerDto> {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @param content
 	 * @param pageable
 	 * @param total
