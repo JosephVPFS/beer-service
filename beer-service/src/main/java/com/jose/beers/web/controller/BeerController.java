@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jose.beers.web.model.BeerDto;
+import com.jose.beers.web.model.BeerStyleEnum;
 
 @RestController
 @RequestMapping("/api/v1/beer")
@@ -20,7 +21,10 @@ public class BeerController {
 	
 	@GetMapping({"/{beerId}"})
 	public ResponseEntity<BeerDto> getBeerById(@PathVariable UUID beerId) {
-		return new ResponseEntity<BeerDto>(BeerDto.builder().build(), HttpStatus.OK);
+		return new ResponseEntity<BeerDto>(BeerDto.builder()
+				.beerName("KF Strong")
+				.beerStyle(BeerStyleEnum.LAGER)
+				.build(), HttpStatus.OK);
 	}
 
 	@PostMapping
