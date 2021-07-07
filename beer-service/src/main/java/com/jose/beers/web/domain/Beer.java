@@ -56,7 +56,7 @@ public class Beer {
 	private String beerStyle;
 	
 	@Column(unique = true)
-	private Long UPC;
+	private String UPC;
 	private BigDecimal price;
 	
 	private Integer minOnHand;
