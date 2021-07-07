@@ -15,26 +15,47 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jose.beers.web.model.BeerDto;
 import com.jose.beers.web.model.BeerStyleEnum;
+import com.jose.beers.web.services.BeerService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/beer")
 public class BeerController {
 	
+	private final BeerService beerService;
+	/**
+	 * 
+	 * @param beerId
+	 * @return
+	 */
 	@GetMapping({"/{beerId}"})
 	public ResponseEntity<BeerDto> getBeerById(@PathVariable UUID beerId) {
-		return new ResponseEntity<BeerDto>(BeerDto.builder()
-				.beerName("KF Strong")
-				.beerStyle(BeerStyleEnum.LAGER)
-				.build(), HttpStatus.OK);
+		
+		return beerService.getBeerByiD(beerId);
+		
 	}
 
+	/**
+	 * 
+	 * @param beerDto
+	 * @return
+	 */
 	@PostMapping
 	public ResponseEntity saveBeer(@RequestBody @Validated BeerDto beerDto) {
-		return new ResponseEntity(HttpStatus.CREATED);
+		return new ResponseEntity<>(beerService.saveBeer(beerDto), HttpStatus.CREATED);
+		
 	}
-	
+	/**
+	 * 
+	 * @param beerId
+	 * @param beerDto
+	 * @return
+	 */
 	@PutMapping({"/{beerId}"})
 	public ResponseEntity updateBeer(@PathVariable UUID beerId, @RequestBody @Validated BeerDto beerDto) {
-		return new ResponseEntity(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(beerService.updateBeer(beerId, beerDto), HttpStatus.NO_CONTENT);
+		
 	}
 }

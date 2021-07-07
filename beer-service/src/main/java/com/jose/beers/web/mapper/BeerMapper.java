@@ -3,6 +3,8 @@
  */
 package com.jose.beers.web.mapper;
 
+import java.util.Optional;
+
 import org.mapstruct.Mapper;
 
 import com.jose.beers.web.domain.Beer;
